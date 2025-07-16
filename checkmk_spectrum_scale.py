@@ -113,7 +113,10 @@ def getNodeName():
             "\n") if row.startswith("mmhealth:State:"))
         table = csv.DictReader(stateOutput, delimiter=":")
         row = getRowByFields(table, criteria)
-        name = row["entityname"]
+        try:
+            name = row["entityname"]
+        except TypeError:
+            pass
     if not name:
         name = socket.gethostname()
     return name
